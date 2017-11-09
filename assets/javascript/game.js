@@ -1,40 +1,67 @@
-// Creating array of words
-const Digi = ["agumon","greymon","metalgreymon","wargreymon","gabumon","garurumon","weregarurumon","metalgarurumon","tentomon","kabuterimon","megakabuterimon","herkuleskabuterimon","palamon","tokomon","lilimon","rosemon","patamon","angemon","magnaangemon","seraphimon","salamon","gatomon","angewomon","ophanimon","biyomon","birdramon","garudamon","phoinexmon","gomamon","ikkakumon","zudomon","vikemon","omnimon","omegamon"]
-// Random chooser---Didnt know what to call it lol
-let randomDigi = Math.floor(Math.random() * Digi.length);
-let choosenDigi = Digi[randomDigi];
-let rightWord = [];
-let wrongWord =[];
-let underScore = [];
+	//creates the array of playable words.
+	var words = ["agumon","greymon","metalgreymon","wargreymon","gabumon","garurumon","weregarurumon","metalgarurumon","tentomon","kabuterimon","megakabuterimon","herkuleskabuterimon","palamon","tokomon","lilimon","rosemon","patamon","angemon","magnaangemon","seraphimon","salamon","gatomon","angewomon","ophanimon","biyomon","birdramon","garudamon","phoinexmon","gomamon","ikkakumon","zudomon","vikemon","omnimon","omegamon"];
+	
+	
+	 // Randomly chooses a choice from the options array.
+      var newGame = words[Math.floor(Math.random() * words.length)];
+      var underScores = [];
+      var correctGuess = [];
+      var wrongGuess = [];
+      var winCounter = 0;
+	  var guessedLetters = []
+	
+	  
+    var targetDiv = document.getElementById("underscore")
+    var secondaryDiv = document.getElementById("incorrectGuess")
+    document.getElementById('underscore').innerHTML = genUnderscores();
 
-// I don't really know what this does...
-let docUnderScore = document.getElementsByClassName("underscore");
+ 	
 
-// Changing undescore to the length of the Digimon name.
-let generateUnderscore = () => {
-    for(let i = 0; i < choosenDigi.length; i++) {
-        underScore.push("_");
-        docUnderScore[0].innerHTML = underScore.join("");
-    }
-    return underScore;
+ 	//functions and conditions
+ 	console.log(newGame)
+
+      //creates underscores for random game chosen
+      function genUnderscores(){
+      	for (var i = 0; i < newGame.length; i++) {
+      		underScores.push("_");
+      	}
+      	return underScores;
+      }
+
+      // This function is run whenever the user presses a key.
+    	document.addEventListener('keypress', function keyword(event) {
+    		// body...
+ 		var keyword = String.fromCharCode(event.keyCode);
+
+ 		
+ 	// user guess
+ 	if (newGame.indexOf(keyword) > -1){
+ 	
+ 	//correct guess goes to correct letters array
+ 	correctGuess.push(keyword); 
+  
+
+ 	//change underscore to correct letter
+ 	underScores[newGame.indexOf(keyword)] = keyword;
+ 	document.getElementById('underscore'[0]);
+  targetDiv.innerHTML = underScores.join(' ');
+
+
+
+ 	if (correctGuess === newGame){
+ 		alert('You Win!');
+    winCounter++;
+ 		} 
+    console.log()
+ 	
 }
+ 	else {
 
-console.log(generateUnderscore());
-// User input guess
-document.addEventListener("keypress", (event) => {
-    let keyword = String.fromCharCode(event.keyCode);
-    // If guess is correct
-    if(choosenDigi.indexOf(keyword) < -1) {
-        // it will get pushed to the rightWord array
-        rightWord.push(keyword);
-        // change underscore with right letter
-        underScore[choosenDigi.indexOf(keyword)] = keyword;
+ 	// incorrect guess goes to wrong letter array
+ 	wrongGuess.push(keyword);
+ 	document.getElementById('incorrectGuess'[0]);
+  secondaryDiv.innerHTML = wrongGuess;
 
-        if(underScore.join("") == choosenDigi) {
-            alert("You win");
-        }
-    }
-    else{
-        wrongWord.push(keyword);
-    }
-})
+ 	}
+
+});
