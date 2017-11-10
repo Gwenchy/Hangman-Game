@@ -1,17 +1,17 @@
 	//creates the array of playable words.
-	var words = ["agumon", "greymon", "metalgreymon", "wargreymon", "gabumon", "garurumon", "weregarurumon", "metalgarurumon", "tentomon",
-		"kabuterimon", "megakabuterimon", "herkuleskabuterimon", "palamon", "tokomon", "lilimon", "rosemon", "patamon", "angemon", "magnaangemon",
-		"seraphimon", "salamon", "gatomon", "angewomon", "ophanimon", "biyomon", "birdramon", "garudamon", "phoinexmon", "gomamon", "ikkakumon",
-		"zudomon", "vikemon", "omnimon", "omegamon"
-	];
+	var words = ["agumon", "greymon", "metalgreymon", "wargreymon", "gabumon", "garurumon", "weregarurumon", "metalgarurumon", "tentomon", 
+	"kabuterimon", "megakabuterimon", "herkuleskabuterimon", "palamon", "tokomon", "lilimon", "rosemon", "patamon", "angemon", "magnaangemon", 
+	"seraphimon", "salamon", "gatomon", "angewomon", "ophanimon", "biyomon", "birdramon", "garudamon", "phoinexmon", "gomamon", "ikkakumon", 
+	"zudomon", "vikemon", "omnimon", "omegamon"];
 
 
 	// Randomly chooses a choice from the options array.
 	var newGame = words[Math.floor(Math.random() * words.length)];
-	var guessedLetters = Array(newGame.length).fill(false);
+	var guessedLetters = Array (newGame.length).fill(false);
 	var underScores = [];
 	var correctGuess = [];
 	var wrongGuess = [];
+	var guessCounter = 0;
 	var winCounter = 0;
 
 	var targetDiv = document.getElementById("underscore")
@@ -33,19 +33,26 @@
 		for (var i = 0; i < newGame.length; i++) {
 			if (keyword == newGame[i] && guessedLetters[i] == false) {
 
-				//change underscore to correct letter
-				underScores[i] = keyword;
-				document.getElementById('underscore' [0]);
-				targetDiv.innerHTML = underScores.join(' ');
+					//change underscore to correct letter
+					underScores[i] = keyword;
+					document.getElementById('underscore' [0]);
+					targetDiv.innerHTML = underScores.join(' ');
 
-				//correct guess goes to correct letters array
-				correctGuess.push(keyword);
+					//correct guess goes to correct letters array
+					correctGuess.push(keyword);
+
+					//increases guessCounter
+					guessCounter++;
+			} 
+		}
+		if(keyword != newGame[i]){
+				//incorrect guess goes to wrong letter array
+				wrongGuess.push(keyword);
+				document.getElementById('incorrectGuess' [0]);
+				secondaryDiv.innerHTML = wrongGuess;
 			}
+		if(guessCounter >= newGame.length){
+				alert("You Win ");
 		}
-		if (keyword != newGame[i]) {
-			//incorrect guess goes to wrong letter array
-			wrongGuess.push(keyword);
-			document.getElementById('incorrectGuess' [0]);
-			secondaryDiv.innerHTML = wrongGuess;
-		}
-	});
+	}
+	);
