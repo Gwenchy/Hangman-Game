@@ -1,9 +1,10 @@
 .container {
-    border: 4px solid red;
+    border: 2px solid red;
     background: url("https://i.pinimg.com/originals/c9/34/05/c9340570a4a9fd441f05891884c43c5c.jpg") no-repeat center top #FFF;
-    height: 800px;
+    height: 100vw;
+    width: 100vw;
         }
-header {
+.header {
     border: 3px solid black;
     width: 40%;
     color: rgb(141, 5, 5);
@@ -14,4 +15,20 @@ header {
 
 h1 {
     font-size: 300%;
+}
+
+.middleContent {
+    border: 3px solid black;
+    width: 40%;
+    color: rgb(141, 5, 5);
+    text-align: center;
+    margin: 0 auto;
+    height: 500px;
+    background: white;
+    opacity: 0.8;
+}
+
+.middleContent p {
+    font: 50px red center;
+
 }
